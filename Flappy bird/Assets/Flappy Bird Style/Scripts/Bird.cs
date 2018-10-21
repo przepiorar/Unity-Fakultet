@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+public class Boundary
+{
+    public float xMin, xMax, yMin, yMax;
+}
+
 public class Bird : MonoBehaviour 
 {
 	public float upForce;					//Upward force of the "flap".
@@ -8,9 +14,11 @@ public class Bird : MonoBehaviour
     private int life = 3;            //Has the player collided with a wall?
 
     private Animator anim;					//Reference to the Animator component.
-	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
+	private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
 
-	void Start()
+    public Boundary boundary;
+
+    void Start()
 	{
 		//Get reference to the Animator component attached to this GameObject.
 		anim = GetComponent<Animator> ();
@@ -33,7 +41,11 @@ public class Bird : MonoBehaviour
 				//	new Vector2(rb2d.velocity.x, 0);
 				//..giving the bird some upward force.
 				rb2d.AddForce(new Vector2(0, upForce));
-			}
+                rb2d.position = new Vector2(
+                    Mathf.Clamp(rb2d.position.x, boundary.xMin, boundary.xMax),
+                    Mathf.Clamp(rb2d.position.y, boundary.yMin, boundary.yMax)
+                    );
+            }
 		}
 	}
 
@@ -43,7 +55,6 @@ public class Bird : MonoBehaviour
 		rb2d.velocity = Vector2.zero;
         // If the bird collides with something set it to dead...
         life--;
-        GameControl.instance.LiveDied();
         if (life <= 0)
         {
             isDead = true;
@@ -51,6 +62,10 @@ public class Bird : MonoBehaviour
             anim.SetTrigger("Die");
             //...and tell the game control about it.
             GameControl.instance.BirdDied();
+        }
+        else
+        {
+            GameControl.instance.LiveDied();
         }
 	}
 }

@@ -54,6 +54,7 @@ public class GameControl : MonoBehaviour
 		gameOvertext.SetActive (true);
 		//Set the game to be over.
 		gameOver = true;
+        Destroy(Serce.serca[zycia]);
     }
     public void LiveDied()
     {

@@ -58,11 +58,11 @@ public class ColumnPool : MonoBehaviour
 		}
         for (int i = 0; i < columnPoolSize; i++)
         {
-            if (columns[i].transform.position.y < 10)
+            if (columns[i].transform.position.y < 6)
                 columns[i].transform.position = new Vector2(columns[i].transform.position.x, columns[i].transform.position.y) + new Vector2(0, 0.01f);
             else
             {
-                columns[i].transform.position = new Vector2(columns[i].transform.position.x, columns[i].transform.position.y) + new Vector2(0, -10);
+                columns[i].transform.position = new Vector2(columns[i].transform.position.x, columns[i].transform.position.y) + new Vector2(0, -6.5f);
             }
         }
     }
