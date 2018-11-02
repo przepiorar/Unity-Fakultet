@@ -17,7 +17,7 @@ public class DestroyByContact : MonoBehaviour {
 
         void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Boss")
+        if (other.tag != "Boss" && other.tag!="Bonus")
         {
             if (other.CompareTag("Boundary") || other.CompareTag("Enemy"))
             {

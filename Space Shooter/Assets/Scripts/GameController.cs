@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public GameObject[] hazards;
     public GameObject[] bosses;
@@ -19,7 +20,12 @@ public class GameController : MonoBehaviour {
     private int score;
     public Text RestartText;
     public Text Endtext;
+    private float timeBonus;
+    private PlayerController playerController;
+    private Transform[] shotSpawnsTMP;
+    private Transform[] shotSpawnsONE;
 
+    public bool activeBonus;
     public bool end;
     public bool restart;
     public bool deadBoss;
@@ -35,6 +41,15 @@ public class GameController : MonoBehaviour {
         StartCoroutine(SpawnWaves());
         bossCount = 0;
         deadBoss = true;
+        activeBonus = false;
+        timeBonus = 0;
+
+        GameObject player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+
+        shotSpawnsTMP = playerController.shotSpawns;  //zapamiętanie wszystkich shotSpawnów
+        shotSpawnsONE = new Transform[1] { shotSpawnsTMP[0] }; // wybranie domyślnego shotSpawna
+        playerController.shotSpawns = shotSpawnsONE;
     }
 
     void Update()
@@ -44,6 +59,16 @@ public class GameController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Application.LoadLevel(Application.loadedLevel);
+            }
+        }
+        if (activeBonus)
+        {
+            timeBonus -= Time.deltaTime;
+            if (timeBonus<=0)
+            {
+                activeBonus = false;
+                //playerController.fireRate = 0.2f;
+                playerController.shotSpawns = shotSpawnsONE;
             }
         }
     }
@@ -73,7 +98,7 @@ public class GameController : MonoBehaviour {
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(boss, spawnPosition, spawnRotation);
-                yield return new WaitForSeconds(spawnWait*2);
+                yield return new WaitForSeconds(spawnWait * 2);
                 bossCount = 0;
 
                 deadBoss = false;
@@ -93,13 +118,13 @@ public class GameController : MonoBehaviour {
 
     public void AddScore(int value)
     {
-        score+=value;
+        score += value;
         UpdateScore();
     }
 
-    void UpdateScore()
+    private void UpdateScore()
     {
-        scoreText.text = "Score: " + score.ToString(); 
+        scoreText.text = "Score: " + score.ToString();
     }
 
     public void GameOver()
@@ -108,5 +133,17 @@ public class GameController : MonoBehaviour {
         end = true;
         RestartText.text = "Press R to restart";
         restart = true;
+    }
+
+    public void ActiveBonus()
+    {
+        activeBonus = true;
+        timeBonus = 10;
+       Transform[] shotSpawnsNEW = new Transform[shotSpawnsTMP.Length - 1];
+        for (int i = 0; i < shotSpawnsTMP.Length-1; i++)
+        {
+            shotSpawnsNEW[i] = shotSpawnsTMP[i + 1];  // Aktywacja nowych shotSpawnów
+        }
+        playerController.shotSpawns = shotSpawnsNEW;
     }
 }
