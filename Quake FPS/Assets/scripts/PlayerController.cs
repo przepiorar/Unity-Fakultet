@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour
+{    
+    public Weapon weapon;
     public float speed;
     public float speedturn;
+
+    private float nextFire;
 
     private Rigidbody rb;
 
@@ -13,13 +16,20 @@ public class Mover : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    void Update()
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            weapon.Shot();
+            nextFire = Time.time + weapon.fireRate;
+        }
+    }
+    
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
-       //  Vector3 move2 = new Vector3(moveHorizontal, moveVertical,0);
+        
         Vector3 movement = transform.forward * moveVertical * speed;
         Vector3 movement2 = transform.right * moveHorizontal * speed;
 
@@ -29,6 +39,7 @@ public class Mover : MonoBehaviour
 
         //rb.transform.position += new Vector3(moveHorizontal*speed,0, moveVertical*speed);  dobre
         //transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0)  * speedturn);
-        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0)  * speedturn);  //dobre
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
     }
 }
+
