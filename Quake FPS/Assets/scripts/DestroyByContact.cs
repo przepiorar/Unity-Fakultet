@@ -8,6 +8,7 @@ public class DestroyByContact : MonoBehaviour
     public GameObject explosion;
     public GameObject playerExplosion;
     public int scoreValue;
+    public int health;
     private GameController gameController;
 
     void Start()
@@ -19,23 +20,39 @@ public class DestroyByContact : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //if (other.tag != "Boss" && other.tag != "Bonus")
-       // {
-           // if (other.CompareTag("Boundary") || other.CompareTag("Enemy"))
-          //  {
-           //     return;
-           // }
-            if (explosion != null)
+        // {
+        if (other.CompareTag("Plane"))// || other.CompareTag("Enemy"))
+        {
+            return;
+        }
+        else
+        {
+            health--;
+            if (health <= 0)
             {
-                Instantiate(explosion, transform.position, transform.rotation);
+                if (explosion != null)
+                {
+                    Instantiate(explosion, transform.position, transform.rotation);
+                }
+                gameController.AddScore(scoreValue);
+                Destroy(gameObject);
             }
             if (other.tag == "Player")
             {
-                Instantiate(playerExplosion, transform.position, transform.rotation);
-             //   gameController.GameOver();
+                gameController.player.health--;
+                gameController.UpdateHealth();
+
+                if (gameController.player.health <= 0)
+                {
+                    Instantiate(playerExplosion, transform.position, transform.rotation);
+                    // gameController.GameOver();
+                }
             }
-            gameController.AddScore(scoreValue);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-      //  }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        //  }
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public Text scoreText;
+    public Text healthText;
+    public PlayerController player;
     private int score;
 
     void Start ()
@@ -30,7 +32,13 @@ public class GameController : MonoBehaviour {
 
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Wynik: " + score.ToString();
+    }
+
+    public void UpdateHealth()
+    {
+        healthText.text = "Życie: " + player.health.ToString();
+
     }
 
     //public void GameOver()
