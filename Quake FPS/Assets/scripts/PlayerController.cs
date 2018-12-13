@@ -76,8 +76,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight *-2 * Physics.gravity.y), ForceMode.VelocityChange);  //-2
             nextJump = 1f + Time.time;
         }
-
-
+        
         //  rb.MovePosition(rb.position + _inputs * speed * Time.fixedDeltaTime);
     }
 }

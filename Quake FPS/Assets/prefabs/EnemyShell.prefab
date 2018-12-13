@@ -25,8 +25,9 @@ GameObject:
   - component: {fileID: 114041532611852310}
   - component: {fileID: 54152852437593658}
   - component: {fileID: 114674781817417426}
+  - component: {fileID: 114236826021617822}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: EnemyShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,6 +115,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &114236826021617822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601499953860534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2125cd04ffe8ad84ca6d68a8d69418d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 0}
+  playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
+  scoreValue: 0
+  health: 0
 --- !u!114 &114674781817417426
 MonoBehaviour:
   m_ObjectHideFlags: 1
