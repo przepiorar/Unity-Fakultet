@@ -15,7 +15,7 @@ public class WeaponMove : MonoBehaviour
             transform.Rotate(new Vector3(-1 * Input.GetAxis("Mouse Y"), 0, 0) * speedturn);
         }
 
-        Debug.Log(transform.localRotation.eulerAngles.x);
+        //Debug.Log(transform.localRotation.eulerAngles.x);
         if (transform.localRotation.eulerAngles.x < min && transform.eulerAngles.x > 0f)  // 360 pelny obrot
             transform.localRotation = Quaternion.Euler(min, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
         else if (transform.localRotation.eulerAngles.x < max && transform.eulerAngles.x > 270f)

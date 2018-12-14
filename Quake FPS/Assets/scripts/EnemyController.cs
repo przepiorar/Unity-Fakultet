@@ -7,14 +7,20 @@ public class EnemyController : MonoBehaviour {
     public GameObject shot;
     public Transform[] shotSpawns;
     public float fireRate;
-   // public float delay;
 
     // private AudioSource audioSource;
+    public Transform Player;
+    public int MoveSpeed;
+    public int MaxDist;
+    public int MinDist;
+
+    private Rigidbody rb;
+    private float nextFire;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         // audioSource = GetComponent<AudioSource>();
-        InvokeRepeating("Fire", 0, fireRate);
     }
 
     void Fire()
@@ -24,5 +30,20 @@ public class EnemyController : MonoBehaviour {
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         }
         // audioSource.Play();
+    }
+
+    void Update()
+    {
+        transform.LookAt(Player);
+        if (Vector3.Distance(rb.position, Player.position) >= MinDist)
+        {
+            rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+            if (Vector3.Distance(rb.position, Player.position) <= MaxDist && Time.time > nextFire) //Here Call any function U want Like Shoot at here or something
+            {
+                Fire();
+                nextFire = Time.time + fireRate;
+            }
+        }
     }
 }
