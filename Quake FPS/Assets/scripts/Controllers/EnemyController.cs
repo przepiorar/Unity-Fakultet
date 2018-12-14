@@ -35,14 +35,17 @@ public class EnemyController : MonoBehaviour {
     void Update()
     {
         transform.LookAt(Player);
-        if (Vector3.Distance(rb.position, Player.position) >= MinDist)
+        if (Vector3.Distance(rb.position, Player.position) <= MaxDist)
         {
-            rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-            if (Vector3.Distance(rb.position, Player.position) <= MaxDist && Time.time > nextFire) //Here Call any function U want Like Shoot at here or something
+            if (Vector3.Distance(rb.position, Player.position) >= MinDist)
             {
-                Fire();
-                nextFire = Time.time + fireRate;
+                rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+                if (Vector3.Distance(rb.position, Player.position) <= MaxDist && Time.time > nextFire) //Here Call any function U want Like Shoot at here or something
+                {
+                    Fire();
+                    nextFire = Time.time + fireRate;
+                }
             }
         }
     }

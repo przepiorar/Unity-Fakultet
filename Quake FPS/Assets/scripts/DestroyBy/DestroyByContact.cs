@@ -21,8 +21,12 @@ public class DestroyByContact : MonoBehaviour
     {
         //if (other.tag != "Boss" && other.tag != "Bonus")
         // {
-        if (other.CompareTag("Plane"))// || other.CompareTag("Enemy"))
+        if (other.CompareTag("Plane") || other.CompareTag("Wall"))
         {
+            if (this.tag == "Shell")
+            {
+                Destroy(gameObject);
+            }
             return;
         }
         else
