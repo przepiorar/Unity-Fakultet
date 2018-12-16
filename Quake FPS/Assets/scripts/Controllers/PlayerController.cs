@@ -4,56 +4,46 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {    
-    public Weapon weapon;
+    public Weapon[] weapons;
+   // [Non.Serializable ]
+    [System.NonSerialized]
+    public Weapon currentWeapon;
     public float speed;
     public float speedturn;
     public int health;
 
+    public float JumpHeight;
+    public GameObject playerExplosion;
     private float nextFire;
     private float nextJump;
 
     private Rigidbody rb;
-    private GameController gameController;
-
-
-    public float JumpHeight;
-    //public float GroundDistance;
-   // public LayerMask Ground;
-    
-   // private bool _isGrounded = true;
-   // private Transform _groundChecker;
-
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        gameController = gameControllerObject.GetComponent<GameController>();
-        gameController.UpdateHealth();
-
-       // _groundChecker = transform.GetChild(0);
-
+        Library.gameController.UpdateHealth();
+        currentWeapon = weapons[0];
     }
     void Update()
     {
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
-            weapon.Shot();
-            nextFire = Time.time + weapon.fireRate;
+            currentWeapon.Shot();
+            nextFire = Time.time + currentWeapon.fireRate;
         }
-        //_isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
-
-
-        //_inputs = Vector3.zero;
-        //_inputs.x = Input.GetAxis("Horizontal");
-        //_inputs.z = Input.GetAxis("Vertical");
-        //if (_inputs != Vector3.zero)
-        //    transform.forward = _inputs;
-
-        //if (Input.GetButtonDown("Jump") && _isGrounded)
-        //{
-        //    rb.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
-        //}
+        if (Input.GetKey("1"))
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[0];
+            weapons[0].gameObject.SetActive(true);
+        }
+        if (Input.GetKey("2"))
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[1];
+            weapons[1].gameObject.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -73,11 +63,20 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
         if (Input.GetButtonDown("Jump") && Time.time > nextJump)
         {
-            rb.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight *-2 * Physics.gravity.y), ForceMode.VelocityChange);  //-2
-            nextJump = 1f + Time.time;
+            rb.AddForce(Vector3.up * (JumpHeight *-0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
+            nextJump = 1.5f + Time.time;
         }
-        
-        //  rb.MovePosition(rb.position + _inputs * speed * Time.fixedDeltaTime);
+    }
+
+    public void SetHealth(int value)
+    {
+        health += value;
+        Library.gameController.UpdateHealth();
+        if (health <= 0)
+        {
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+            // gameController.GameOver();
+        }
     }
 }
 

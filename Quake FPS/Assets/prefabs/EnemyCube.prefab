@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114971756437646946}
   m_Layer: 0
   m_Name: EnemyCube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,10 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2125cd04ffe8ad84ca6d68a8d69418d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
-  playerExplosion: {fileID: 0}
-  scoreValue: 1
-  health: 2
+  damage: 0
 --- !u!114 &114971756437646946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +170,10 @@ MonoBehaviour:
   shotSpawns:
   - {fileID: 4306635856273140}
   fireRate: 0.5
-  Player: {fileID: 0}
+  explosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 2}
+  scoreValue: 1
+  health: 2
   MoveSpeed: 4
   MaxDist: 20
   MinDist: 10
+  Player: {fileID: 0}

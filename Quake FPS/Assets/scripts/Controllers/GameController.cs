@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     {
         score = 0;
         UpdateScore();
+        Library.gameController = this;
     }
 	
 	void Update ()

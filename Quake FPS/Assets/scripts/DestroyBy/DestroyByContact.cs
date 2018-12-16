@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class DestroyByContact : MonoBehaviour
 {
-
-    public GameObject explosion;
-    public GameObject playerExplosion;
-    public int scoreValue;
-    public int health;
-    private GameController gameController;
-
-    void Start()
-    {
-       GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        gameController = gameControllerObject.GetComponent<GameController>();
-    }
+    public int damage;
 
     void OnTriggerEnter(Collider other)
     {
@@ -31,30 +20,28 @@ public class DestroyByContact : MonoBehaviour
         }
         else
         {
-            health--;
-            if (health <= 0)
+            if (this.tag == "Shell" && other.tag == "Shell")
             {
-                if (explosion != null)
-                {
-                    Instantiate(explosion, transform.position, transform.rotation);
-                }
-                gameController.AddScore(scoreValue);
                 Destroy(gameObject);
-            }
-            if (other.tag == "Player")
-            {
-                gameController.player.health--;
-                gameController.UpdateHealth();
-
-                if (gameController.player.health <= 0)
-                {
-                    Instantiate(playerExplosion, transform.position, transform.rotation);
-                    // gameController.GameOver();
-                }
+                Destroy(other.gameObject);
             }
             else
             {
-                Destroy(other.gameObject);
+                Destroy(gameObject);
+                if (other.tag == "Player")
+                {
+                    Library.gameController.player.SetHealth(-damage);
+                }
+                else
+                {
+                    if (other.tag == "Enemy")
+                    {
+                        EnemyController enemy = other.GetComponent<EnemyController>();
+                        enemy.TakeDamage(damage);
+                    }
+                    return;
+                    // Destroy(other.gameObject);
+                }
             }
         }
         //  }

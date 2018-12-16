@@ -7,12 +7,15 @@ public class EnemyController : MonoBehaviour {
     public GameObject shot;
     public Transform[] shotSpawns;
     public float fireRate;
+    public GameObject explosion;
+    public int scoreValue;
+    public int health;
 
     // private AudioSource audioSource;
-    public Transform Player;
     public int MoveSpeed;
     public int MaxDist;
     public int MinDist;
+    public Transform Player;
 
     private Rigidbody rb;
     private float nextFire;
@@ -39,14 +42,27 @@ public class EnemyController : MonoBehaviour {
         {
             if (Vector3.Distance(rb.position, Player.position) >= MinDist)
             {
-                rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-                if (Vector3.Distance(rb.position, Player.position) <= MaxDist && Time.time > nextFire) //Here Call any function U want Like Shoot at here or something
-                {
-                    Fire();
-                    nextFire = Time.time + fireRate;
-                }
+                rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;                
             }
+            if (Time.time > nextFire) 
+            {
+                Fire();
+                nextFire = Time.time + fireRate;
+            }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
+            Library.gameController.AddScore(scoreValue);
+            Destroy(gameObject);
         }
     }
 }
