@@ -10,13 +10,9 @@ public class ShellExplosion : MonoBehaviour
     public float m_ExplosionForce;              // The amount of force added to a tank at the centre of the explosion.
     public float m_MaxLifeTime;                    // The time in seconds before the shell is removed.
     public float m_ExplosionRadius;                // The maximum distance away from the explosion tanks can be and are still affected.
-    private GameController gameController;
-
 
     private void Start()
     {
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        gameController = gameControllerObject.GetComponent<GameController>();
         Invoke("Boom", m_MaxLifeTime);
     }
 

@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
     private float nextJump;
 
     private Rigidbody rb;
+    private GameController gameController;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Library.gameController.UpdateHealth();
         currentWeapon = weapons[0];
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        gameController = gameControllerObject.GetComponent<GameController>();
+        gameController.UpdateHealth();
     }
     void Update()
     {
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
     public void SetHealth(int value)
     {
         health += value;
-        Library.gameController.UpdateHealth();
+        gameController.UpdateHealth();
         if (health <= 0)
         {
             Instantiate(playerExplosion, transform.position, transform.rotation);
