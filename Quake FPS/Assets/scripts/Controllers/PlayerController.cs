@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {    
     public Weapon[] weapons;
-   // [Non.Serializable ]
+    [System.NonSerialized]
+    public bool[] haveWeapons;
     [System.NonSerialized]
     public Weapon currentWeapon;
+    [System.NonSerialized]
+    public int currentWeaponId;
+    [System.NonSerialized]
+    public int[] ammoWeapons;
     public float speed;
     public float speedturn;
     public int health;
@@ -27,25 +32,41 @@ public class PlayerController : MonoBehaviour
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         gameController = gameControllerObject.GetComponent<GameController>();
         gameController.UpdateHealth();
+        haveWeapons = new bool[weapons.Length];
+        ammoWeapons = new int[weapons.Length];
+        for (int i = 0; i < haveWeapons.Length; i++)
+        {
+            haveWeapons[i] = false;
+            ammoWeapons[i] = 0;
+        }
+        haveWeapons[0] = true;
+        ammoWeapons[0] = 20;
+        currentWeaponId = 0;
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1") && Time.time > nextFire && ammoWeapons[currentWeaponId]>0)
         {
             currentWeapon.Shot();
+            ammoWeapons[currentWeaponId]--;
+            Library.gameController.UpdateAmmo(currentWeaponId);
             nextFire = Time.time + currentWeapon.fireRate;
         }
-        if (Input.GetKey("1"))
+        if (Input.GetKey("1") && haveWeapons[0])
         {
             currentWeapon.gameObject.SetActive(false);
             currentWeapon = weapons[0];
             weapons[0].gameObject.SetActive(true);
+            currentWeaponId = 0;
+            Library.gameController.UpdateAmmo(currentWeaponId);
         }
-        if (Input.GetKey("2"))
+        if (Input.GetKey("2") && haveWeapons[1])
         {
             currentWeapon.gameObject.SetActive(false);
             currentWeapon = weapons[1];
             weapons[1].gameObject.SetActive(true);
+            currentWeaponId = 1;
+            Library.gameController.UpdateAmmo(currentWeaponId);
         }
     }
 

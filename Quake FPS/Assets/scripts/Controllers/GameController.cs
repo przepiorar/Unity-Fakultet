@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
     public Text scoreText;
     public Text healthText;
+    public Text ammoText;
     public PlayerController player;
     private int score;
 
@@ -39,7 +40,11 @@ public class GameController : MonoBehaviour {
     public void UpdateHealth()
     {
         healthText.text = "Życie: " + player.health.ToString();
+    }
 
+    public void UpdateAmmo(int a)
+    {
+        healthText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
     }
 
     //public void GameOver()
