@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour {
 
     public void UpdateAmmo(int a)
     {
-        healthText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
+        ammoText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
     }
 
     //public void GameOver()
