@@ -37,17 +37,20 @@ public class EnemyController : MonoBehaviour {
 
     void Update()
     {
-        transform.LookAt(Player);
-        if (Vector3.Distance(rb.position, Player.position) <= MaxDist)
+        if (Player != null)
         {
-            if (Vector3.Distance(rb.position, Player.position) >= MinDist)
+            transform.LookAt(Player);
+            if (Vector3.Distance(rb.position, Player.position) <= MaxDist)
             {
-                rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;                
-            }
-            if (Time.time > nextFire) 
-            {
-                Fire();
-                nextFire = Time.time + fireRate;
+                if (Vector3.Distance(rb.position, Player.position) >= MinDist)
+                {
+                    rb.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                }
+                if (Time.time > nextFire)
+                {
+                    Fire();
+                    nextFire = Time.time + fireRate;
+                }
             }
         }
     }
