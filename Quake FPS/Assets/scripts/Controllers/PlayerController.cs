@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentWeapon = weapons[0];
+       // currentWeapon = weapons[0];
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         gameController = gameControllerObject.GetComponent<GameController>();
         gameController.UpdateHealth();
@@ -39,13 +39,13 @@ public class PlayerController : MonoBehaviour
             haveWeapons[i] = false;
             ammoWeapons[i] = 0;
         }
-        haveWeapons[0] = true;
-        ammoWeapons[0] = 20;
-        currentWeaponId = 0;
+       // haveWeapons[0] = true;
+       // ammoWeapons[0] = 20;
+        currentWeaponId =-1;
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire && (ammoWeapons[currentWeaponId]>0 || currentWeaponId==2))
+        if (Input.GetButton("Fire1") && currentWeaponId != -1 && Time.time > nextFire && (ammoWeapons[currentWeaponId]>0 || currentWeaponId==2) )
         {
             currentWeapon.Shot();
             ammoWeapons[currentWeaponId]--;
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 1;
             Library.gameController.UpdateAmmo(currentWeaponId);
         }
-        if (Input.GetKey("3"))
+        if (Input.GetKey("3") && haveWeapons[2])
         {
             currentWeapon.gameObject.SetActive(false);
             currentWeapon = weapons[2];
