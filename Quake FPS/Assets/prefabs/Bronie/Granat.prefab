@@ -37,7 +37,6 @@ GameObject:
   - component: {fileID: 33070102303171786}
   - component: {fileID: 23455245323839290}
   - component: {fileID: 135178130029557150}
-  - component: {fileID: 114517358321025248}
   - component: {fileID: 114342315226645686}
   m_Layer: 0
   m_Name: Granat
@@ -45,20 +44,20 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4485229748466114
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1218027605780756}
-  m_LocalRotation: {x: -0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4941295624200388}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -40, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4941295624200388
 Transform:
   m_ObjectHideFlags: 1
@@ -131,18 +130,6 @@ MonoBehaviour:
   shotSpawns:
   - {fileID: 4485229748466114}
   delay: 1
---- !u!114 &114517358321025248
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1927934164330694}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd89ab9818c86da4a89f0566f4e7ac60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedturn: 4
 --- !u!135 &135178130029557150
 SphereCollider:
   m_ObjectHideFlags: 1

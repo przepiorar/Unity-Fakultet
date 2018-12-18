@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       // currentWeapon = weapons[0];
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         gameController = gameControllerObject.GetComponent<GameController>();
         gameController.UpdateHealth();
@@ -39,9 +38,12 @@ public class PlayerController : MonoBehaviour
             haveWeapons[i] = false;
             ammoWeapons[i] = 0;
         }
-       // haveWeapons[0] = true;
-       // ammoWeapons[0] = 20;
+        //haveWeapons[3] = true;
+        //ammoWeapons[3] = 20;
         currentWeaponId =-1;
+        // currentWeapon = weapons[3];
+        //haveWeapons[0] = true;
+       // ammoWeapons[0] = 20;
     }
     void Update()
     {
@@ -74,6 +76,14 @@ public class PlayerController : MonoBehaviour
             currentWeapon = weapons[2];
             weapons[2].gameObject.SetActive(true);
             currentWeaponId = 2;
+            Library.gameController.UpdateAmmo(currentWeaponId);
+        }
+        if (Input.GetKey("4") && haveWeapons[3])
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[3];
+            weapons[3].gameObject.SetActive(true);
+            currentWeaponId = 3;
             Library.gameController.UpdateAmmo(currentWeaponId);
         }
     }

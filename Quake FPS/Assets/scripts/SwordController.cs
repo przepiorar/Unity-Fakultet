@@ -9,13 +9,17 @@ public class SwordController : Weapon
     public Transform SwordHit;
     private Transform target;
     public Transform startingPosition;
+   // private CapsuleCollider coll;
     public void Start()
     {
         target = startingPosition;
+       // coll = GetComponent<CapsuleCollider>();
     }
     public override void Shot()
     {
         target = SwordHit;
+       // coll.isTrigger = true;
+        
     }
     private void Update()
     {
@@ -29,6 +33,7 @@ public class SwordController : Weapon
             if (target == SwordHit)
             {
                 target = startingPosition;
+               // coll.isTrigger = false;
             }
             else
             {
