@@ -40,10 +40,10 @@ public class PlayerController : MonoBehaviour
         }
         //haveWeapons[3] = true;
         //ammoWeapons[3] = 20;
-        currentWeaponId =-1;
-        // currentWeapon = weapons[3];
-        //haveWeapons[0] = true;
-       // ammoWeapons[0] = 20;
+        currentWeaponId =0;
+         currentWeapon = weapons[0];
+        haveWeapons[0] = true;
+        ammoWeapons[0] = 20;
     }
     void Update()
     {
