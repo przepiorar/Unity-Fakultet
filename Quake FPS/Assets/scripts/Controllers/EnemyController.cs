@@ -104,5 +104,12 @@ public class EnemyController : MonoBehaviour {
         {
             stop = true;
         }
+        //else
+        //{
+            //if (other.tag == "Enemy")
+            //{
+            //    rb.transform.position -= 4*move;
+            //}
+        //}
     }
 }

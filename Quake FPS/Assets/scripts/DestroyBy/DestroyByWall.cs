@@ -10,14 +10,5 @@ public class DestroyByWall : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        else
-        {
-            if (other.tag =="Enemy" || other.tag== "Player")
-            {
-                Rigidbody rb = other.GetComponent<Rigidbody>();
-                    rb.velocity = Vector3.zero;
-            }
-            return;
-        }
     }
 }

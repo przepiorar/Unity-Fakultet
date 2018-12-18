@@ -10,8 +10,9 @@ public class DestroyByContact : MonoBehaviour
     {
         //if (other.tag != "Boss" && other.tag != "Bonus")
         // {
-        if (other.CompareTag("Plane") || other.CompareTag("Wall"))
+        if (other.tag =="Plane" || other.CompareTag("Wall"))
         {
+           // Debug.Log(Vector3.Distance(this.transform.position, Library.gameController.player.transform.position).ToString());
             if (this.tag == "Shell")
             {
                 Destroy(gameObject);
