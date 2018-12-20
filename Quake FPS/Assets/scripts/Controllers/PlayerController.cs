@@ -40,10 +40,10 @@ public class PlayerController : MonoBehaviour
         }
         //haveWeapons[3] = true;
         //ammoWeapons[3] = 20;
-        currentWeaponId =0;
-         currentWeapon = weapons[0];
-        haveWeapons[0] = true;
-        ammoWeapons[0] = 20;
+        currentWeaponId =-1;
+       // currentWeapon = weapons[0];
+       // haveWeapons[0] = true;
+       // ammoWeapons[0] = 20;
     }
     void Update()
     {
@@ -86,6 +86,14 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 3;
             Library.gameController.UpdateAmmo(currentWeaponId);
         }
+        if (Input.GetKey("5") && haveWeapons[4])
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[4];
+            weapons[4].gameObject.SetActive(true);
+            currentWeaponId = 4;
+            Library.gameController.UpdateAmmo(currentWeaponId);
+        }
     }
 
     void FixedUpdate()
@@ -107,6 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * (JumpHeight *-0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
             nextJump = 1.5f + Time.time;
+          //  rb.useGravity = true;
         }
     }
 
@@ -120,5 +129,13 @@ public class PlayerController : MonoBehaviour
             // gameController.GameOver();
         }
     }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Plane")
+    //    {
+    //        rb.useGravity = false;
+    //    }
+    //}
 }
 
