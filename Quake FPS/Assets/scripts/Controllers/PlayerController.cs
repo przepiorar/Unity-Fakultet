@@ -94,6 +94,14 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 4;
             Library.gameController.UpdateAmmo(currentWeaponId);
         }
+        if (Input.GetKey("6") && haveWeapons[5])
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[5];
+            weapons[5].gameObject.SetActive(true);
+            currentWeaponId = 5;
+            Library.gameController.UpdateAmmo(currentWeaponId);
+        }
     }
 
     void FixedUpdate()
