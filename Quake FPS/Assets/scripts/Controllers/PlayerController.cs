@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && currentWeaponId != -1 && Time.time > nextFire && (ammoWeapons[currentWeaponId]>0 || currentWeaponId==2) )
+        if (Input.GetButton("Fire1") && currentWeaponId != -1 && Time.time > nextFire && (ammoWeapons[currentWeaponId]>0 || currentWeaponId==2 || currentWeaponId ==6) )
         {
             currentWeapon.Shot();
             ammoWeapons[currentWeaponId]--;
@@ -100,6 +100,14 @@ public class PlayerController : MonoBehaviour
             currentWeapon = weapons[5];
             weapons[5].gameObject.SetActive(true);
             currentWeaponId = 5;
+            Library.gameController.UpdateAmmo(currentWeaponId);
+        }
+        if (Input.GetKey("7") && haveWeapons[6])
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[6];
+            weapons[6].gameObject.SetActive(true);
+            currentWeaponId = 6;
             Library.gameController.UpdateAmmo(currentWeaponId);
         }
     }
