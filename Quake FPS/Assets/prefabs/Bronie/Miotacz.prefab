@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  shot: {fileID: 1601499953860534, guid: 3d8351c87ef63904fb833fab936c7378, type: 2}
+  shot: {fileID: 1707702605653724, guid: 0950d22f9981b7740801994fb77d37b8, type: 2}
   shotSpawns:
   - {fileID: 4822556888753752}
   - {fileID: 4695343417059830}
