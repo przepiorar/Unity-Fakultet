@@ -19,9 +19,11 @@ public class PlayerController : MonoBehaviour
 
     public float JumpHeight;
     public GameObject playerExplosion;
+
+    public List<AudioSource> textTakeDamage;
+
     private float nextFire;
     private float nextJump;
-
     private Rigidbody rb;
     private GameController gameController;
 
@@ -138,6 +140,11 @@ public class PlayerController : MonoBehaviour
     public void SetHealth(int value)
     {
         health += value;
+        if (value<0)
+        {
+            int a =Random.Range(0, textTakeDamage.Count);
+            textTakeDamage[a].Play();
+        }
         gameController.UpdateHealth();
         if (health <= 0)
         {

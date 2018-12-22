@@ -21,7 +21,7 @@ public class DestroyByContact : MonoBehaviour
         }
         else
         {
-            if (this.tag == "Shell" && other.tag == "Shell")
+            if ((this.tag == "Shell"|| other.tag == "Sword") && (other.tag == "Shell" || other.tag == "Sword"))
             {
                 return;
                 //Destroy(gameObject);

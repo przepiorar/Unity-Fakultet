@@ -8,17 +8,24 @@ public class WeaponController : Weapon
     public Transform[] shotSpawns;
     public float delay;
 
-    // private AudioSource audioSource;
+    public bool audio2;
+     private AudioSource audioSource;
+
 
     void Start()
     {
-        // audioSource = GetComponent<AudioSource>();
-     // InvokeRepeating("Shot", delay, fireRate);
+        if (audio2)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public override void Shot()
     {
-        // audioSource.Play();
+        if (audio2)
+        {
+            audioSource.Play();
+        }
         foreach (var shotSpawn in shotSpawns)
         {
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);

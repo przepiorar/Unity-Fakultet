@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
     public Text healthText;
     public Text ammoText;
     public PlayerController player;
+    public List<AudioSource> killTexts;
     private int score;
 
     void Start ()
@@ -34,6 +35,11 @@ public class GameController : MonoBehaviour {
 
     private void UpdateScore()
     {
+        if (score > 0)
+        {
+            int a = Random.Range(0, killTexts.Count);
+            killTexts[a].Play();
+        }
         scoreText.text = "Wynik: " + score.ToString();
     }
 

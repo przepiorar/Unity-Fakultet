@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShellExplosion : MonoBehaviour
 {
-    public ParticleSystem explosion;       
-   // public AudioSource m_ExplosionAudio;                // Reference to the audio that will play on explosion.
+    public ParticleSystem explosion;
+    public AudioSource m_ExplosionAudio;                // Reference to the audio that will play on explosion.
     public float m_MaxDamage;                    // The amount of damage done if the explosion is centred on a tank.
     public float m_ExplosionForce;              // The amount of force added to a tank at the centre of the explosion.
     public float m_MaxLifeTime;                    // The time in seconds before the shell is removed.
@@ -14,6 +14,7 @@ public class ShellExplosion : MonoBehaviour
     private void Start()
     {
         Invoke("Boom", m_MaxLifeTime);
+        Invoke("Explosion", 2.75f);
     }
 
     private void Boom()
@@ -61,14 +62,18 @@ public class ShellExplosion : MonoBehaviour
         }
 
         // Play the explosion sound effect.
-        //  m_ExplosionAudio.Play();
 
         // Once the particles have finished, destroy the gameobject they are on.
-         //Destroy(m_ExplosionParticles.gameObject, m_ExplosionParticles.duration);
+        Destroy(gameObject, 0.25f);
 
         // Destroy the shell.
-        Destroy(gameObject);
     }
+
+    private void Explosion()
+    {
+        m_ExplosionAudio.Play();
+    }
+
 
 
     private int CalculateDamage(Vector3 targetPosition)

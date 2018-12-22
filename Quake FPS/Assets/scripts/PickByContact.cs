@@ -6,12 +6,14 @@ public class PickByContact : MonoBehaviour
 {
     public int slot;
     public int ammo;
+    public AudioSource audioSource;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Destroy(gameObject);
+            audioSource.Play();
             Library.gameController.player.haveWeapons[slot] = true;
             Library.gameController.player.ammoWeapons[slot] += ammo;
             if (Library.gameController.player.currentWeaponId !=-1)

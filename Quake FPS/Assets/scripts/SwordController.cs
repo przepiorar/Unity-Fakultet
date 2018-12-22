@@ -8,18 +8,21 @@ public class SwordController : Weapon
     public int speed;
     public Transform SwordHit;
     private Transform target;
+    private AudioSource audioSource;
     public Transform startingPosition;
    // private CapsuleCollider coll;
     public void Start()
     {
         target = startingPosition;
-       // coll = GetComponent<CapsuleCollider>();
+        audioSource = GetComponent<AudioSource>();
+        // coll = GetComponent<CapsuleCollider>();
     }
     public override void Shot()
     {
         target = SwordHit;
-       // coll.isTrigger = true;
-        
+        audioSource.Play();
+        // coll.isTrigger = true;
+
     }
     private void Update()
     {
