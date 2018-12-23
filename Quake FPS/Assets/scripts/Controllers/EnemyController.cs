@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour {
     public int MaxDist;
     public float MinDist;
     public Transform Player;
+    public ShieldController shield;
 
     public bool Shooting;
 
@@ -100,15 +101,22 @@ public class EnemyController : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (shield != null)
         {
-            if (explosion != null)
+            shield.AbsorbDamage();
+        }
+        else
+        {
+            health -= damage;
+            if (health <= 0)
             {
-                Instantiate(explosion, transform.position, transform.rotation);
+                if (explosion != null)
+                {
+                    Instantiate(explosion, transform.position, transform.rotation);
+                }
+                Library.gameController.AddScore(scoreValue);
+                Destroy(gameObject);
             }
-            Library.gameController.AddScore(scoreValue);
-            Destroy(gameObject);
         }
     }
 
@@ -118,6 +126,7 @@ public class EnemyController : MonoBehaviour {
         {
             stop = true;
         }
+        
         //else
         //{
             //if (other.tag == "Enemy")

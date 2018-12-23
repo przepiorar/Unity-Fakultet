@@ -29,17 +29,37 @@ public class DestroyByContact : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
-                if (other.tag == "Player")
+                if (other.tag == "Shield" && this.tag !="EnemyShell")
                 {
-                    Library.gameController.player.SetHealth(-damage);
+                    if (this.tag == "Shell")
+                    {
+                        ShieldController enemy = other.GetComponent<ShieldController>();
+                        enemy.AbsorbDamage();
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        if (this.tag == "Arrow")
+                        {
+                            Destroy(other.gameObject);
+                        }
+                    }
                 }
                 else
                 {
-                    if (other.tag == "Enemy")
+                    if (other.tag == "Player")
                     {
-                        EnemyController enemy = other.GetComponent<EnemyController>();
-                        enemy.TakeDamage(damage);
+                        Destroy(gameObject);
+                        Library.gameController.player.SetHealth(-damage);
+                    }
+                    else
+                    {
+                        if (other.tag == "Enemy" && (this.tag == "Shell" || this.tag == "Arrow"))
+                        {
+                            Destroy(gameObject);
+                            EnemyController enemy = other.GetComponent<EnemyController>();
+                            enemy.TakeDamage(damage);
+                        }
                     }
                     return;
                     // Destroy(other.gameObject);

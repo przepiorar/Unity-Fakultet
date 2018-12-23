@@ -9,6 +9,9 @@ TagManager:
   - Shell
   - Enemy
   - Sword
+  - Shield
+  - Arrow
+  - EnemyShell
   layers:
   - Default
   - TransparentFX
