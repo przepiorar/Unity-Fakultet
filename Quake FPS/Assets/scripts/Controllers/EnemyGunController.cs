@@ -16,8 +16,8 @@ public class EnemyGunController : MonoBehaviour
             //relativePos[0] = relativePos[1];
 
            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-            rotation[1] = transform.rotation[1];
-            rotation[2] = transform.rotation[2];
+            //rotation[1] = transform.rotation[1];
+            //rotation[2] = transform.rotation[2];
             transform.rotation = rotation;
 
 

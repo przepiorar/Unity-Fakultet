@@ -625,22 +625,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081497500303226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3572005fb13f2e442ad10b54436a9c13, type: 3}
+  m_Script: {fileID: 11500000, guid: 5809d0e0fd03c6b4a807197428ee520f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
+  scoreValue: 10
+  health: 50
+  MaxDist: 60
+  MinDist: 15
+  Player: {fileID: 0}
+  shield: {fileID: 0}
+  initAxis: []
   shot: {fileID: 1601499953860534, guid: b38a948b6d687b146bde935f629da07e, type: 2}
   shotSpawns:
   - {fileID: 4877808466999756}
   - {fileID: 4252500447653566}
   fireRate: 1
-  explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
-  scoreValue: 10
-  health: 50
   MoveSpeed: 8
-  MaxDist: 60
-  MinDist: 15
-  Player: {fileID: 0}
-  Shooting: 1
 --- !u!136 &136249200825228870
 CapsuleCollider:
   m_ObjectHideFlags: 1

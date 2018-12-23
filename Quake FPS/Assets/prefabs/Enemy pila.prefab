@@ -522,20 +522,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599663107536008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3572005fb13f2e442ad10b54436a9c13, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c17ddc1178c2c4cb9666f36c875f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shot: {fileID: 0}
-  shotSpawns: []
-  fireRate: 0
   explosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 2}
   scoreValue: 10
   health: 30
-  MoveSpeed: 12
   MaxDist: 35
   MinDist: 5.1
   Player: {fileID: 0}
-  Shooting: 0
+  shield: {fileID: 0}
+  initAxis: []
+  MoveSpeed: 12
 --- !u!114 &114844049662150014
 MonoBehaviour:
   m_ObjectHideFlags: 1
