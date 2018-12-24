@@ -16,15 +16,20 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float speedturn;
     public int health;
-
+    
     public float JumpHeight;
     public GameObject playerExplosion;
+    [System.NonSerialized]
+    public bool grounded;
 
     public List<AudioSource> textTakeDamage;
 
     private float nextFire;
     private float nextJump;
-    private Rigidbody rb;
+    [System.NonSerialized]
+    public Rigidbody rb;
+    [System.NonSerialized]
+    public bool odbicie;
     private GameController gameController;
 
     void Start()
@@ -33,6 +38,8 @@ public class PlayerController : MonoBehaviour
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         gameController = gameControllerObject.GetComponent<GameController>();
         gameController.UpdateHealth();
+        grounded = true;
+        odbicie = false;
         haveWeapons = new bool[weapons.Length];
         ammoWeapons = new int[weapons.Length];
         for (int i = 0; i < haveWeapons.Length; i++)
@@ -116,24 +123,38 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = transform.forward * moveVertical * speed;
-        Vector3 movement2 = transform.right * moveHorizontal * speed;
-
-       // Apply this movement to the rigidbody's position.
-        rb.MovePosition(rb.position + movement);
-        rb.MovePosition(rb.position + movement2);
-
-        //rb.transform.position += new Vector3(moveHorizontal*speed,0, moveVertical*speed);  dobre
-        //transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0)  * speedturn);
-        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
-        if (Input.GetButtonDown("Jump") && Time.time > nextJump)
+        if (odbicie)
         {
-            rb.AddForce(Vector3.up * (JumpHeight *-0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
-            nextJump = 1.5f + Time.time;
-          //  rb.useGravity = true;
+         //   Vector3 movement = transform.forward * -2f;
+          //  rb.MovePosition(rb.position + movement);
+            odbicie = false;
+        }
+        else
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = transform.forward * moveVertical * speed;
+            Vector3 movement2 = transform.right * moveHorizontal * speed;
+
+            // Apply this movement to the rigidbody's position.
+            rb.MovePosition(rb.position + movement);
+            rb.MovePosition(rb.position + movement2);
+
+            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
+                                                                                        // if (grounded)
+                                                                                        // {
+                                                                                        //    rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                                                                                        //}
+            if (Input.GetButtonDown("Jump") && Time.time > nextJump && grounded)
+            {
+                grounded = false;
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+                rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
+                nextJump = 1.5f + Time.time;
+                //   rb.constraints = RigidbodyConstraints.FreezeRotation;
+                //  rb.useGravity = true;
+            }
         }
     }
 
