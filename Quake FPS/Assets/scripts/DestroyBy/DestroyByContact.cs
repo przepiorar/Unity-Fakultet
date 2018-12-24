@@ -15,7 +15,13 @@ public class DestroyByContact : MonoBehaviour
            // Debug.Log(Vector3.Distance(this.transform.position, Library.gameController.player.transform.position).ToString());
             if (this.tag == "Shell" || this.tag == "EnemyShell")
             {
-                Destroy(gameObject);
+                PlasmaExplosion pe = GetComponent<PlasmaExplosion>();
+                if (!pe)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                    pe.Boom();
             }
             return;
         }

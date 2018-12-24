@@ -11660,28 +11660,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 4129334529128394, guid: 6a7ca5f41b17edd42a374d624780eb5e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4129334529128394, guid: 6a7ca5f41b17edd42a374d624780eb5e, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 1584118820203814, guid: 6a7ca5f41b17edd42a374d624780eb5e, type: 2}
-      propertyPath: m_Name
-      value: Tower (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114001618933262020, guid: 6a7ca5f41b17edd42a374d624780eb5e,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 192231148}
     - target: {fileID: 114835702350579948, guid: 6a7ca5f41b17edd42a374d624780eb5e,
         type: 2}
       propertyPath: Player
       value: 
       objectReference: {fileID: 192231148}
+    - target: {fileID: 114001618933262020, guid: 6a7ca5f41b17edd42a374d624780eb5e,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 192231148}
+    - target: {fileID: 1584118820203814, guid: 6a7ca5f41b17edd42a374d624780eb5e, type: 2}
+      propertyPath: m_Name
+      value: Tower (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a7ca5f41b17edd42a374d624780eb5e, type: 2}
   m_IsPrefabAsset: 0
@@ -17417,12 +17409,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114835702350579948, guid: 6a7ca5f41b17edd42a374d624780eb5e,
+    - target: {fileID: 114001618933262020, guid: 6a7ca5f41b17edd42a374d624780eb5e,
         type: 2}
       propertyPath: Player
       value: 
       objectReference: {fileID: 192231148}
-    - target: {fileID: 114001618933262020, guid: 6a7ca5f41b17edd42a374d624780eb5e,
+    - target: {fileID: 114835702350579948, guid: 6a7ca5f41b17edd42a374d624780eb5e,
         type: 2}
       propertyPath: Player
       value: 
