@@ -50,6 +50,11 @@ public class GameController : MonoBehaviour {
 
     public void UpdateAmmo(int a)
     {
+        if (a==2 || a==6)
+        {
+            ammoText.text = "Amunicja: --";
+        }
+        else
         ammoText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
     }
 

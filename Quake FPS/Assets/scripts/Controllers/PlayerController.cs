@@ -23,13 +23,12 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
 
     public List<AudioSource> textTakeDamage;
+    public AudioSource changeWeaponSound;
 
     private float nextFire;
     private float nextJump;
     [System.NonSerialized]
     public Rigidbody rb;
-    [System.NonSerialized]
-    public bool odbicie;
     private GameController gameController;
 
     void Start()
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
         gameController = gameControllerObject.GetComponent<GameController>();
         gameController.UpdateHealth();
         grounded = true;
-        odbicie = false;
         haveWeapons = new bool[weapons.Length];
         ammoWeapons = new int[weapons.Length];
         for (int i = 0; i < haveWeapons.Length; i++)
@@ -59,8 +57,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1") && currentWeaponId != -1 && Time.time > nextFire && (ammoWeapons[currentWeaponId]>0 || currentWeaponId==2 || currentWeaponId ==6) )
         {
             currentWeapon.Shot();
-            ammoWeapons[currentWeaponId]--;
-            Library.gameController.UpdateAmmo(currentWeaponId);
+            if (currentWeaponId !=2 && currentWeaponId !=6)
+            {
+                ammoWeapons[currentWeaponId]--;
+                Library.gameController.UpdateAmmo(currentWeaponId);
+            }
             nextFire = Time.time + currentWeapon.fireRate;
         }
         if (Input.GetKey("1") && haveWeapons[0])
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
             weapons[0].gameObject.SetActive(true);
             currentWeaponId = 0;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("2") && haveWeapons[1])
         {
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
             weapons[1].gameObject.SetActive(true);
             currentWeaponId = 1;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("3") && haveWeapons[2])
         {
@@ -86,6 +89,7 @@ public class PlayerController : MonoBehaviour
             weapons[2].gameObject.SetActive(true);
             currentWeaponId = 2;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("4") && haveWeapons[3])
         {
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
             weapons[3].gameObject.SetActive(true);
             currentWeaponId = 3;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("5") && haveWeapons[4])
         {
@@ -102,6 +107,7 @@ public class PlayerController : MonoBehaviour
             weapons[4].gameObject.SetActive(true);
             currentWeaponId = 4;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("6") && haveWeapons[5])
         {
@@ -110,6 +116,7 @@ public class PlayerController : MonoBehaviour
             weapons[5].gameObject.SetActive(true);
             currentWeaponId = 5;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
         if (Input.GetKey("7") && haveWeapons[6])
         {
@@ -118,43 +125,30 @@ public class PlayerController : MonoBehaviour
             weapons[6].gameObject.SetActive(true);
             currentWeaponId = 6;
             Library.gameController.UpdateAmmo(currentWeaponId);
+            changeWeaponSound.Play();
         }
     }
 
     void FixedUpdate()
     {
-        if (odbicie)
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = transform.forward * moveVertical * speed;
+        Vector3 movement2 = transform.right * moveHorizontal * speed;
+
+        // Apply this movement to the rigidbody's position.
+        rb.MovePosition(rb.position + movement);
+        rb.MovePosition(rb.position + movement2);
+
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
+        
+        if (Input.GetButtonDown("Jump") && Time.time > nextJump && grounded)
         {
-         //   Vector3 movement = transform.forward * -2f;
-          //  rb.MovePosition(rb.position + movement);
-            odbicie = false;
-        }
-        else
-        {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-
-            Vector3 movement = transform.forward * moveVertical * speed;
-            Vector3 movement2 = transform.right * moveHorizontal * speed;
-
-            // Apply this movement to the rigidbody's position.
-            rb.MovePosition(rb.position + movement);
-            rb.MovePosition(rb.position + movement2);
-
-            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
-                                                                                        // if (grounded)
-                                                                                        // {
-                                                                                        //    rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                                                                                        //}
-            if (Input.GetButtonDown("Jump") && Time.time > nextJump && grounded)
-            {
-                grounded = false;
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
-                rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
-                nextJump = 1.5f + Time.time;
-                //   rb.constraints = RigidbodyConstraints.FreezeRotation;
-                //  rb.useGravity = true;
-            }
+            grounded = false;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
+            nextJump = 1.5f + Time.time;
         }
     }
 
@@ -173,13 +167,5 @@ public class PlayerController : MonoBehaviour
             // gameController.GameOver();
         }
     }
-
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Plane")
-    //    {
-    //        rb.useGravity = false;
-    //    }
-    //}
 }
 
