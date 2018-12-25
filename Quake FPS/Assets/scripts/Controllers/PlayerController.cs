@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource changeWeaponSound;
 
     private float nextFire;
-    private float nextJump;
+   // private float nextJump;
     [System.NonSerialized]
     public Rigidbody rb;
     private GameController gameController;
@@ -142,12 +142,12 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * speedturn);  //dobre
         
-        if (Input.GetButtonDown("Jump") && Time.time > nextJump && grounded)
+        if (Input.GetButtonDown("Jump") && grounded)// && Time.time > nextJump )
         {
             grounded = false;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
-            nextJump = 1.5f + Time.time;
+          //  nextJump = 1.5f + Time.time;
         }
     }
 
