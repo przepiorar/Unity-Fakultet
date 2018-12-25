@@ -75,10 +75,21 @@ public class TowerEnemy : EnemyController
         }
         if (Player != null)
         {
-            if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] == Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] == Player.transform.position.y)
-                && (initAxis[2] == 0 || initAxis[2] == Player.transform.position.z)))
+            if (initValueMoreThenEnemyPos)  //enemy value is more than initAxis
             {
-                active = true;
+                if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] < Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] < Player.transform.position.y)
+                    && (initAxis[2] == 0 || initAxis[2] < Player.transform.position.z)))
+                {
+                    active = true;
+                }
+            }
+            else
+            {
+                if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] > Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] > Player.transform.position.y)
+                   && (initAxis[2] == 0 || initAxis[2] > Player.transform.position.z)))
+                {
+                    active = true;
+                }
             }
             if (active)
             {

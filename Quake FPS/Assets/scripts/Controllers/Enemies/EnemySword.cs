@@ -8,7 +8,6 @@ public class EnemySword : MonoBehaviour
     public int damage;
     public int spinSpeed;
     private float nextDamage;
-   // private CapsuleCollider capsCollider;
     private BoxCollider capsCollider;
 
     private void Start()

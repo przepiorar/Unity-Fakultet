@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class SpinEnemy : EnemyController
-{    
+public class StandardEnemy : EnemyController
+{
+    public GameObject shot;
+    public Transform[] shotSpawns;
+    public float fireRate;
+
+    // public float xMin, xMax, zMin, zMax;
+
     public int MoveSpeed;
 
     private AudioSource audioSource;
@@ -23,7 +30,11 @@ public class SpinEnemy : EnemyController
 
     public override void Fire()
     {
-
+        foreach (var shotSpawn in shotSpawns)
+        {
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        }
+        audioSource.Play();
     }
 
     void Update()
@@ -39,20 +50,26 @@ public class SpinEnemy : EnemyController
             }
             else
             {
-                if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] == Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] == Player.transform.position.y)
-                    && (initAxis[2] == 0 || initAxis[2] == Player.transform.position.z)))
+                if (initValueMoreThenEnemyPos)  //enemy value is more than initAxis
                 {
-                    active = true;
+                    if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] < Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] < Player.transform.position.y)
+                        && (initAxis[2] == 0 || initAxis[2] < Player.transform.position.z)))
+                    {
+                        active = true;
+                    }
+                }
+                else
+                {
+                    if (initAxis.Count == 0 || ((initAxis[0] == 0 || initAxis[0] > Player.transform.position.x) && (initAxis[1] == 0 || initAxis[1] > Player.transform.position.y)
+                       && (initAxis[2] == 0 || initAxis[2] > Player.transform.position.z)))
+                    {
+                        active = true;
+                    }
                 }
                 if (active)
                 {
                     if (Vector3.Distance(rb.position, Player.position) <= MaxDist)
                     {
-                        if (Time.time > nextFire)
-                        {
-                            audioSource.Play();
-                            nextFire = Time.time + 1.5f;
-                        }
                         if (Vector3.Distance(rb.position, Player.position) >= MinDist)
                         {
                             move = transform.forward * MoveSpeed * Time.deltaTime;
@@ -62,6 +79,19 @@ public class SpinEnemy : EnemyController
                             // {
                             rb.transform.position += move;
                             //  }
+                        }
+                        else
+                        {
+                            move = transform.forward * -MoveSpeed / 2 * Time.deltaTime;
+                            //  if (xMin < (rb.transform.position + move)[0] && zMin < (rb.transform.position + move)[2] && (rb.transform.position + move)[0] < xMax && (rb.transform.position + move)[2] < zMax)
+                            //  {
+                            rb.transform.position += move;
+                            // }
+                        }
+                        if (Time.time > nextFire)
+                        {
+                            Fire();
+                            nextFire = Time.time + fireRate;
                         }
                     }
                 }

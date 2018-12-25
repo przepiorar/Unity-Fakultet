@@ -14,6 +14,7 @@ public abstract class EnemyController : MonoBehaviour {
 
     public ShieldController shield;    
     public List<float> initAxis;
+    public bool initValueMoreThenEnemyPos;
 
     public abstract void Fire();
 
