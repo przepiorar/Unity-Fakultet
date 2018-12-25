@@ -13,6 +13,7 @@ TagManager:
   - Arrow
   - EnemyShell
   - Ramp
+  - End
   layers:
   - Default
   - TransparentFX

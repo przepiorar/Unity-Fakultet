@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
     public PlayerController player;
     public List<AudioSource> killTexts;
     public GameObject shotLeft;
+    public GameObject lightWall;
+    public GameObject lightWall2;
     private int score;
 
     void Start ()
@@ -22,10 +24,18 @@ public class GameController : MonoBehaviour {
 	
 	void Update ()
     {
-       // if (Input.GetKeyDown(KeyCode.R))  //lub esc i wyjscie
-       // {
+        // if (Input.GetKeyDown(KeyCode.R))  //lub esc i wyjscie
+        // {
         //    Application.LoadLevel(Application.loadedLevel);
-       // }
+        // }
+        if ( 251 < player.transform.position.z)
+        {
+            lightWall.gameObject.SetActive(true);
+        }
+        if (431 < player.transform.position.z)
+        {
+            lightWall2.gameObject.SetActive(true);
+        }
     }
 
     public void AddScore(int value)
@@ -58,6 +68,7 @@ public class GameController : MonoBehaviour {
         else
         ammoText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
     }
+    
 
     //public void GameOver()
     //{

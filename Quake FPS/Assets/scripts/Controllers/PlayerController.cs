@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     
     public float JumpHeight;
     public GameObject playerExplosion;
-   // [System.NonSerialized]
+    [System.NonSerialized]
     public bool grounded;
 
     public List<AudioSource> textTakeDamage;
@@ -136,8 +136,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = transform.forward * moveVertical * speed;
         Vector3 movement2 = transform.right * moveHorizontal * speed;
-
-        // Apply this movement to the rigidbody's position.
+        
         rb.MovePosition(rb.position + movement);
         rb.MovePosition(rb.position + movement2);
 

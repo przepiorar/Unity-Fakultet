@@ -12,15 +12,12 @@ public class GroundChecker : MonoBehaviour
         }
         if ((other.tag == "Wall" || other.tag == "Enemy") && Library.gameController.player.grounded == false)
         {
-            // Library.gameController.player.odbicie = true;
             Vector3 movement = transform.up * -1f;
             Library.gameController.player.rb.MovePosition(Library.gameController.player.rb.position + movement);
-
-            // Vector3 movement = transform.forward * -2f;
-
-
-            // Library.gameController.player.rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-            //  Library.gameController.player.rb.MovePosition(Library.gameController.player.rb.position + movement);
+        }
+        if (other.tag=="End")
+        {
+            // gameController.GameOver();
         }
     }
     public void OnTriggerExit(Collider other)
@@ -30,10 +27,5 @@ public class GroundChecker : MonoBehaviour
             Library.gameController.player.grounded = false;
             Library.gameController.player.rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-
-        //if (other.tag == "Wall" || other.tag == "Enemy")
-        //{
-        //    Library.gameController.player.rb.constraints = RigidbodyConstraints.FreezeRotation;
-        //}
     }
 }

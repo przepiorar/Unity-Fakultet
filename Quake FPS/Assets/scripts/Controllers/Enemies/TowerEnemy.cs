@@ -11,6 +11,7 @@ public class TowerEnemy : EnemyController
     public List<GameObject> towerWalls;
     public List<Transform> partWallsSpawns;
     public GameObject partWall;
+    public bool tower;
 
     private AudioSource audioSource;
     private Rigidbody rb;
@@ -37,40 +38,43 @@ public class TowerEnemy : EnemyController
 
     void Update()
     {
-        if (towerWalls.Count == 5 && health < 400)
+        if (tower)
         {
-            towerWalls[4].SetActive(false);
-            towerWalls.RemoveAt(4);
-            foreach (var spawn in partWallsSpawns)
+            if (towerWalls.Count == 5 && health < 400)
             {
-                Instantiate(partWall, spawn.position, spawn.rotation);
+                towerWalls[4].SetActive(false);
+                towerWalls.RemoveAt(4);
+                foreach (var spawn in partWallsSpawns)
+                {
+                    Instantiate(partWall, spawn.position, spawn.rotation);
+                }
             }
-        }
-        if (towerWalls.Count == 4 && health < 300)
-        {
-            towerWalls[3].SetActive(false);
-            towerWalls.RemoveAt(3);
-            foreach (var spawn in partWallsSpawns)
+            if (towerWalls.Count == 4 && health < 300)
             {
-                Instantiate(partWall, spawn.position, spawn.rotation);
+                towerWalls[3].SetActive(false);
+                towerWalls.RemoveAt(3);
+                foreach (var spawn in partWallsSpawns)
+                {
+                    Instantiate(partWall, spawn.position, spawn.rotation);
+                }
             }
-        }
-        if (towerWalls.Count == 3 && health < 200)
-        {
-            towerWalls[2].SetActive(false);
-            towerWalls.RemoveAt(2);
-            foreach (var spawn in partWallsSpawns)
+            if (towerWalls.Count == 3 && health < 200)
             {
-                Instantiate(partWall, spawn.position, spawn.rotation); ;
+                towerWalls[2].SetActive(false);
+                towerWalls.RemoveAt(2);
+                foreach (var spawn in partWallsSpawns)
+                {
+                    Instantiate(partWall, spawn.position, spawn.rotation); ;
+                }
             }
-        }
-        if (towerWalls.Count == 2 && health < 100)
-        {
-            towerWalls[1].SetActive(false);
-            towerWalls.RemoveAt(1);
-            foreach (var spawn in partWallsSpawns)
+            if (towerWalls.Count == 2 && health < 100)
             {
-                Instantiate(partWall, spawn.position, spawn.rotation);
+                towerWalls[1].SetActive(false);
+                towerWalls.RemoveAt(1);
+                foreach (var spawn in partWallsSpawns)
+                {
+                    Instantiate(partWall, spawn.position, spawn.rotation);
+                }
             }
         }
         if (Player != null)

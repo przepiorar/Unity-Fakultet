@@ -1023,6 +1023,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   shield: {fileID: 0}
   initAxis: []
+  initValueMoreThenEnemyPos: 0
   shot: {fileID: 1317446254054944, guid: 8991cba2f74a39c4caa62e2ba8014d95, type: 2}
   shotSpawns:
   - {fileID: 4899724544043022}
@@ -1047,6 +1048,7 @@ MonoBehaviour:
   - {fileID: 4880354070393640}
   - {fileID: 4797406188596824}
   partWall: {fileID: 1330204204847042, guid: d845c5a1027b1954f8d650f4f4f899a2, type: 2}
+  tower: 1
 --- !u!114 &114835702350579948
 MonoBehaviour:
   m_ObjectHideFlags: 1
