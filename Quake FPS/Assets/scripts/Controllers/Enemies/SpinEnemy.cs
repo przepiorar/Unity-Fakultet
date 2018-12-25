@@ -87,13 +87,5 @@ public class SpinEnemy : EnemyController
         {
             stop = true;
         }
-
-        //else
-        //{
-        //if (other.tag == "Enemy")
-        //{
-        //    rb.transform.position -= 4*move;
-        //}
-        //}
     }
 }

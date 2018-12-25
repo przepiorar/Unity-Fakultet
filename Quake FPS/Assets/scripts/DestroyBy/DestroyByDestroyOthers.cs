@@ -6,7 +6,6 @@ public class DestroyByDestroyOthers : MonoBehaviour
 {
     public List<EnemyController> Enemies;
 	
-	// Update is called once per frame
 	void Update ()
     {
         for (int i = 0; i < Enemies.Count; i++)

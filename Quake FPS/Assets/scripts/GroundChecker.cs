@@ -17,7 +17,7 @@ public class GroundChecker : MonoBehaviour
         }
         if (other.tag=="End")
         {
-            // gameController.GameOver();
+           Library.gameController.GameOver(true);
         }
     }
     public void OnTriggerExit(Collider other)

@@ -13,26 +13,40 @@ public class GameController : MonoBehaviour {
     public GameObject shotLeft;
     public GameObject lightWall;
     public GameObject lightWall2;
+    public Canvas endWindow;
+    public Canvas pauseWindow;
+    public Text endText;
     private int score;
+    private bool pause;
 
     void Start ()
     {
         score = 0;
+        pause = false;
         UpdateScore();
         Library.gameController = this;
     }
 	
 	void Update ()
     {
-        // if (Input.GetKeyDown(KeyCode.R))  //lub esc i wyjscie
-        // {
-        //    Application.LoadLevel(Application.loadedLevel);
-        // }
-        if ( 251 < player.transform.position.z)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!pause)
+            {
+                PauseGame();
+                pause = true;
+            }
+            else
+            {
+                ContinueGame();
+                pause = false;
+            }
+        }
+        if (lightWall!=null && 251 < player.transform.position.z)
         {
             lightWall.gameObject.SetActive(true);
         }
-        if (431 < player.transform.position.z)
+        if (lightWall2 != null &&  431 < player.transform.position.z)
         {
             lightWall2.gameObject.SetActive(true);
         }
@@ -68,13 +82,48 @@ public class GameController : MonoBehaviour {
         else
         ammoText.text = "Amunicja: " + player.ammoWeapons[a].ToString();
     }
-    
 
-    //public void GameOver()
-    //{
-    //    Endtext.text = "Game Over!";
-    //    end = true;
-    //    RestartText.text = "Press R to restart";
-    //    restart = true;
-    //}
+
+    public void GameOver(bool b)
+    {
+        endWindow.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        if (b)
+        {
+            endText.text = "Wygrana!/nUdało Ci się uciec/nUzyskano: " + score.ToString() + " punktow";
+        }
+        else
+        {
+            endText.text = "Porażka!/nZostałeś zabity";
+        }
+
+    }
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseWindow.gameObject.SetActive(true);
+    }
+    private void ContinueGame()
+    {
+        Time.timeScale = 1;
+        pauseWindow.gameObject.SetActive(false);
+    }
+
+    public void LeaveGame()
+    {
+        Application.Quit();
+    }
+
+    public void StayInGame()
+    {
+        Time.timeScale = 1;
+        pauseWindow.gameObject.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        endWindow.gameObject.SetActive(false);
+        Application.LoadLevel(Application.loadedLevel);
+        Time.timeScale = 1;
+    }
 }

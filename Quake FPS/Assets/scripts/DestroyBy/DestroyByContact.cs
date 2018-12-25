@@ -10,7 +10,6 @@ public class DestroyByContact : MonoBehaviour
     {
         if (other.tag =="Plane" || other.CompareTag("Wall") || other.tag == "Ramp")
         {
-           // Debug.Log(Vector3.Distance(this.transform.position, Library.gameController.player.transform.position).ToString());
             if (this.tag == "Shell" || this.tag == "EnemyShell")
             {
                 PlasmaExplosion pe = GetComponent<PlasmaExplosion>();

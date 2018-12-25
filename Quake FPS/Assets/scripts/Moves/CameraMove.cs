@@ -17,7 +17,7 @@ public class CameraMove : MonoBehaviour
 
         //Debug.Log(-1 * Input.GetAxis("Mouse Y"));
        // Debug.Log(transform.eulerAngles.x);
-        if (transform.localRotation.eulerAngles.x < min && transform.eulerAngles.x >180f)  // 360 pelny obrot czyli tutaj 330
+        if (transform.localRotation.eulerAngles.x < min && transform.eulerAngles.x >180f) 
             transform.localRotation = Quaternion.Euler(min, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
         else if (transform.localRotation.eulerAngles.x > max && transform.eulerAngles.x< 180f)
             transform.localRotation = Quaternion.Euler(max, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);

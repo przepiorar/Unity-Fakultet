@@ -39,6 +39,4 @@ public abstract class EnemyController : MonoBehaviour {
             }
         }
     }
-
-    //public abstract void OnTriggerEnter(Collider other);
 }

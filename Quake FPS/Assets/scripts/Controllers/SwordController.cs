@@ -15,7 +15,7 @@ public class SwordController : Weapon
     {
         target = startingPosition;
         audioSource = GetComponent<AudioSource>();
-         coll = GetComponent<CapsuleCollider>();
+        coll = GetComponent<CapsuleCollider>();
     }
     public override void Shot()
     {

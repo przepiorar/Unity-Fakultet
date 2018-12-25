@@ -6,10 +6,8 @@ public class WeaponController : Weapon
 {
     public GameObject shot;
     public Transform[] shotSpawns;
-    public float delay;
-
     public bool audio2;
-     private AudioSource audioSource;
+    private AudioSource audioSource;
 
 
     void Start()
