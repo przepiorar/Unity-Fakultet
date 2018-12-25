@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     
     public float JumpHeight;
     public GameObject playerExplosion;
-    [System.NonSerialized]
+   // [System.NonSerialized]
     public bool grounded;
 
     public List<AudioSource> textTakeDamage;
@@ -155,6 +155,10 @@ public class PlayerController : MonoBehaviour
     public void SetHealth(int value)
     {
         health += value;
+        if (health>100)
+        {
+            health = 100;
+        }
         if (value<0)
         {
             int a =Random.Range(0, textTakeDamage.Count);

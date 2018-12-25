@@ -5,7 +5,7 @@ public class GroundChecker : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag =="Plane")
+        if (other.tag =="Plane" )
         {
             Library.gameController.player.grounded = true;
             Library.gameController.player.rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;

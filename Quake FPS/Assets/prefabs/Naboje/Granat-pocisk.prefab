@@ -224,7 +224,7 @@ MonoBehaviour:
   explosion: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 2}
   m_ExplosionAudio: {fileID: 82249807596936214}
-  m_MaxDamage: 100
+  m_MaxDamage: 150
   m_ExplosionForce: 50
   m_MaxLifeTime: 3
   m_ExplosionRadius: 20

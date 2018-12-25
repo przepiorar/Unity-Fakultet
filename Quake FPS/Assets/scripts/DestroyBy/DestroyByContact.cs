@@ -8,9 +8,7 @@ public class DestroyByContact : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.tag != "Boss" && other.tag != "Bonus")
-        // {
-        if (other.tag =="Plane" || other.CompareTag("Wall"))
+        if (other.tag =="Plane" || other.CompareTag("Wall") || other.tag == "Ramp")
         {
            // Debug.Log(Vector3.Distance(this.transform.position, Library.gameController.player.transform.position).ToString());
             if (this.tag == "Shell" || this.tag == "EnemyShell")
@@ -18,6 +16,7 @@ public class DestroyByContact : MonoBehaviour
                 PlasmaExplosion pe = GetComponent<PlasmaExplosion>();
                 if (!pe)
                 {
+                  //  Instantiate(Library.gameController.shotLeft, transform.position-transform.forward*1.8f, transform.rotation);
                     Destroy(gameObject);
                 }
                 else
@@ -30,8 +29,6 @@ public class DestroyByContact : MonoBehaviour
             if ((this.tag == "Shell"|| other.tag == "Sword") && (other.tag == "Shell" || other.tag == "Sword"))
             {
                 return;
-                //Destroy(gameObject);
-                //Destroy(other.gameObject);
             }
             else
             {
@@ -72,6 +69,5 @@ public class DestroyByContact : MonoBehaviour
                 }
             }
         }
-        //  }
     }
 }

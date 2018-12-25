@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public Text ammoText;
     public PlayerController player;
     public List<AudioSource> killTexts;
+    public GameObject shotLeft;
     private int score;
 
     void Start ()

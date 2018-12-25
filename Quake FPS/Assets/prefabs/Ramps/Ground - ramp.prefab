@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65636198667471442}
   m_Layer: 0
   m_Name: Ground - ramp
-  m_TagString: Plane
+  m_TagString: Ramp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

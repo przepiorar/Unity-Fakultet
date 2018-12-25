@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - Arrow
   - EnemyShell
+  - Ramp
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class PickByContact : MonoBehaviour
     public int ammo;
     public AudioSource audioSource;
     public bool gun;
+    public bool heal;
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,24 +16,31 @@ public class PickByContact : MonoBehaviour
         {
             Destroy(gameObject);
             audioSource.Play();
-            Library.gameController.player.ammoWeapons[slot] += ammo;
-            if (gun)
+            if (heal)
             {
-                Library.gameController.player.haveWeapons[slot] = true;
-                if (Library.gameController.player.currentWeaponId != -1)
-                {
-                    Library.gameController.player.currentWeapon.gameObject.SetActive(false);
-                }
-                Library.gameController.player.currentWeapon = Library.gameController.player.weapons[slot];
-                Library.gameController.player.weapons[slot].gameObject.SetActive(true);
-                Library.gameController.player.currentWeaponId = slot;
-                Library.gameController.UpdateAmmo(Library.gameController.player.currentWeaponId);
+                Library.gameController.player.SetHealth(ammo);
             }
             else
             {
-                if (Library.gameController.player.currentWeaponId == slot)
+                Library.gameController.player.ammoWeapons[slot] += ammo;
+                if (gun)
                 {
+                    Library.gameController.player.haveWeapons[slot] = true;
+                    if (Library.gameController.player.currentWeaponId != -1)
+                    {
+                        Library.gameController.player.currentWeapon.gameObject.SetActive(false);
+                    }
+                    Library.gameController.player.currentWeapon = Library.gameController.player.weapons[slot];
+                    Library.gameController.player.weapons[slot].gameObject.SetActive(true);
+                    Library.gameController.player.currentWeaponId = slot;
                     Library.gameController.UpdateAmmo(Library.gameController.player.currentWeaponId);
+                }
+                else
+                {
+                    if (Library.gameController.player.currentWeaponId == slot)
+                    {
+                        Library.gameController.UpdateAmmo(Library.gameController.player.currentWeaponId);
+                    }
                 }
             }
         }

@@ -10,18 +10,18 @@ public class SwordController : Weapon
     private Transform target;
     private AudioSource audioSource;
     public Transform startingPosition;
-   // private CapsuleCollider coll;
+    private CapsuleCollider coll;
     public void Start()
     {
         target = startingPosition;
         audioSource = GetComponent<AudioSource>();
-        // coll = GetComponent<CapsuleCollider>();
+         coll = GetComponent<CapsuleCollider>();
     }
     public override void Shot()
     {
         target = SwordHit;
         audioSource.Play();
-        // coll.isTrigger = true;
+        coll.isTrigger = true;
 
     }
     private void Update()
@@ -36,11 +36,11 @@ public class SwordController : Weapon
             if (target == SwordHit)
             {
                 target = startingPosition;
-               // coll.isTrigger = false;
             }
             else
             {
                 transform.position = startingPosition.position;
+                coll.isTrigger = false;
             }
         }
     }

@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  damage: 5
+  damage: 25
   speed: 10
   SwordHit: {fileID: 4125615231644716}
   startingPosition: {fileID: 4304132916484022}
