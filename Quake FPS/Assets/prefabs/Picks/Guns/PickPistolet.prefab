@@ -217,6 +217,7 @@ MonoBehaviour:
   ammo: 25
   audioSource: {fileID: 0}
   gun: 0
+  heal: 0
 --- !u!114 &114171724279836580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,9 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: 0
-  ammo: 25
+  ammo: 30
   audioSource: {fileID: 0}
   gun: 1
+  heal: 0
 --- !u!136 &136324935300968988
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         {
             grounded = false;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange);  //-2
+            rb.AddForce(Vector3.up * (JumpHeight * -0.5f * Physics.gravity.y), ForceMode.VelocityChange); 
           //  nextJump = 1.5f + Time.time;
         }
     }
