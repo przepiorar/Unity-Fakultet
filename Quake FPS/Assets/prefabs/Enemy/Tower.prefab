@@ -369,8 +369,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584118820203814}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -140, y: 5, z: 170}
-  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_LocalPosition: {x: -140, y: 5, z: 150}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4563223322197440}
   - {fileID: 4212291793996078}
@@ -441,7 +441,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162119512600780}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 16, z: -1}
+  m_LocalPosition: {x: 0, y: 15.8, z: -1}
   m_LocalScale: {x: 1, y: 5, z: 1}
   m_Children:
   - {fileID: 4899724544043022}
@@ -657,7 +657,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c1ee70f105b19941b58675f3529b1f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1022,8 +1022,11 @@ MonoBehaviour:
   MinDist: 0
   Player: {fileID: 0}
   shield: {fileID: 0}
-  initAxis: []
-  initValueMoreThenEnemyPos: 0
+  initAxis:
+  - 0
+  - 0
+  - 110
+  initValueMoreThenEnemyPos: 1
   shot: {fileID: 1317446254054944, guid: 8991cba2f74a39c4caa62e2ba8014d95, type: 2}
   shotSpawns:
   - {fileID: 4899724544043022}

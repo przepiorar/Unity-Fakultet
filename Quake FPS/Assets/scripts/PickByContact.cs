@@ -34,6 +34,33 @@ public class PickByContact : MonoBehaviour
                     Library.gameController.player.weapons[slot].gameObject.SetActive(true);
                     Library.gameController.player.currentWeaponId = slot;
                     Library.gameController.UpdateAmmo(Library.gameController.player.currentWeaponId);
+                    switch (slot)
+                    {
+                        case 0:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": pistolet";
+                            break;
+                        case 1:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": granat";
+                            break;
+                        case 2:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": pręt";
+                            break;
+                        case 3:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": kusza";
+                            break;
+                        case 4:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": karabin";
+                            break;
+                        case 5:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": miotacz ognia";
+                            break;
+                        case 6:
+                            Library.gameController.weaponText.text = (slot + 1).ToString() + ": działo plazmowe";
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
                 else
                 {

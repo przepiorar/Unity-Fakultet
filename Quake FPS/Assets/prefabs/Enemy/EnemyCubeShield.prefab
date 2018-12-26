@@ -157,7 +157,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9035bbdec2efc314f96047b282acabfb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -327,11 +327,14 @@ MonoBehaviour:
   explosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 2}
   scoreValue: 1
   health: 40
-  MaxDist: 30
+  MaxDist: 45
   MinDist: 10
   Player: {fileID: 0}
   shield: {fileID: 114694704513753870}
-  initAxis: []
+  initAxis:
+  - 0
+  - 0
+  - 30
   initValueMoreThenEnemyPos: 0
   shot: {fileID: 1601499953860534, guid: b38a948b6d687b146bde935f629da07e, type: 2}
   shotSpawns:

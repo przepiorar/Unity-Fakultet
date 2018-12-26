@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text healthText;
     public Text ammoText;
+    public Text weaponText;
     public PlayerController player;
     public List<AudioSource> killTexts;
     public GameObject shotLeft;

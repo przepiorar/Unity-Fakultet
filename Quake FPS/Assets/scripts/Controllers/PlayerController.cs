@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {    
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     
     public float JumpHeight;
     public GameObject playerExplosion;
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public bool grounded;
 
     public List<AudioSource> textTakeDamage;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 0;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": pistolet";
         }
         if (Input.GetKey("2") && haveWeapons[1])
         {
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 1;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": granat";
         }
         if (Input.GetKey("3") && haveWeapons[2])
         {
@@ -84,6 +87,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 2;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": pręt";
         }
         if (Input.GetKey("4") && haveWeapons[3])
         {
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 3;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": kusza";
         }
         if (Input.GetKey("5") && haveWeapons[4])
         {
@@ -102,6 +107,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 4;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": karabin";
         }
         if (Input.GetKey("6") && haveWeapons[5])
         {
@@ -111,6 +117,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 5;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": miotacz ognia";
         }
         if (Input.GetKey("7") && haveWeapons[6])
         {
@@ -120,6 +127,7 @@ public class PlayerController : MonoBehaviour
             currentWeaponId = 6;
             Library.gameController.UpdateAmmo(currentWeaponId);
             changeWeaponSound.Play();
+            Library.gameController.weaponText.text = (currentWeaponId + 1).ToString() + ": działo plazmowe";
         }
     }
 
@@ -164,4 +172,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
