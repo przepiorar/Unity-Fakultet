@@ -649,12 +649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e904dc684e8f86c43a116213f795c196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.1
+  fireRate: 0.2
   shot: {fileID: 1707702605653724, guid: 0950d22f9981b7740801994fb77d37b8, type: 2}
   shotSpawns:
   - {fileID: 4822556888753752}
   - {fileID: 4695343417059830}
-  delay: 0.1
   audio2: 1
 --- !u!136 &136130275475401058
 CapsuleCollider:
