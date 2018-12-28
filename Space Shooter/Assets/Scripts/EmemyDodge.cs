@@ -39,7 +39,7 @@ public class EmemyDodge : MonoBehaviour {
     void FixedUpdate()
     {
         float newManeuver = Mathf.MoveTowards(rb.velocity.x, targetManeuver, Time.deltaTime * smoothing);
-        rb.velocity = new Vector3(newManeuver, 0.0f, currentSpeed);
+        rb.velocity = new Vector3(newManeuver, 0.0f, 2);
         rb.position = new Vector3
         (
             Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax),

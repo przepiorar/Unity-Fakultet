@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
         pause = false;
         UpdateScore();
         Library.gameController = this;
+        Cursor.visible = false;
     }
 	
 	void Update ()
@@ -89,13 +90,14 @@ public class GameController : MonoBehaviour {
     {
         endWindow.gameObject.SetActive(true);
         Time.timeScale = 0;
+        Cursor.visible = true;
         if (b)
         {
-            endText.text = "Wygrana!/nUdało Ci się uciec/nUzyskano: " + score.ToString() + " punktow";
+            endText.text = "Wygrana!\nUdało Ci się uciec\nUzyskano: " + score.ToString() + " punktow";
         }
         else
         {
-            endText.text = "Porażka!/nZostałeś zabity";
+            endText.text = "Porażka!\nZostałeś zabity";
         }
 
     }
@@ -103,11 +105,13 @@ public class GameController : MonoBehaviour {
     {
         Time.timeScale = 0;
         pauseWindow.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
     private void ContinueGame()
     {
         Time.timeScale = 1;
         pauseWindow.gameObject.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void LeaveGame()
@@ -119,6 +123,7 @@ public class GameController : MonoBehaviour {
     {
         Time.timeScale = 1;
         pauseWindow.gameObject.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void RestartGame()
@@ -126,5 +131,6 @@ public class GameController : MonoBehaviour {
         endWindow.gameObject.SetActive(false);
         Application.LoadLevel(Application.loadedLevel);
         Time.timeScale = 1;
+        Cursor.visible = false;
     }
 }
