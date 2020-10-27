@@ -1,5 +1,5 @@
 # RP - Unity Cherrypick Games 
 
-Rafał Przepióra - grupa początkująca
+Gry wykonane na potrzeby przedmiotu fakultatywnego
 
 
